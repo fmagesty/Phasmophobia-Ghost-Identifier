@@ -36,7 +36,7 @@ print("Welcome!")
 
 # ===EVIDENCE 1===
 print('Enter first evidence: ')
-evidence_1 = pyip.inputChoice(['orb', 'book', 'temp', 'box', 'prints'])
+evidence_1 = pyip.inputChoice(['emf', 'orb', 'book', 'temp', 'box', 'prints'])
 
 
 while evidence_1 != "emf" and evidence_1 != "orb" and evidence_1 != "book" and evidence_1 != "temp" and evidence_1 != "box" and evidence_1 != "prints":
@@ -125,7 +125,6 @@ if evidence_1 == "prints":
     Possible_Evidences_1.remove("prints")
 
 print("With one evidence your ghost can be: {}" .format(str(Ghost_Id_First_Evidence)))
-print("Possible evidences: {}" .format(str(Possible_Evidences_1)))
 print("____________________________________________________________________________________________________________________________________________________________")
 
 # ===EVIDENCE 2===
@@ -222,7 +221,6 @@ if evidence_1 == "prints" or evidence_2 == "prints":
     Possible_Evidences_2.remove("prints")
 
 print("With two evidences your ghost can be: {}" .format(str(Ghost_Id_Second_Evidence)))
-print("Possible evidences: {}" .format(str(Possible_Evidences_2)))
 print("____________________________________________________________________________________________________________________________________________________________")
 
 # ===EVIDENCE 3===
