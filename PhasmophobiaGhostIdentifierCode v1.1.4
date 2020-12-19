@@ -8,7 +8,7 @@
 #Update versao 1.1.3 dia 15 de novembro 2020: corrigido erro ao digitar evidencias que nao sao possiveis eram lidas pelo programa como correto. exemplo: box, orb, book (neste caso 'book' nao eh uma possivel evidencia junto com box e orb)
 #Update versao 1.1.4 dia 8 de dezembro 2020: agora o input eh feito com pyinputplus ao inves do input regular
 
-#proximos updates: criar interface grafica
+#proximos updates: criar GUI
 
 import pyinputplus as pyip
 
@@ -35,7 +35,6 @@ Possible_Evidences_3 = []
 print("Welcome!")
 
 # ===EVIDENCE 1===
-print('Enter first evidence: ')
 evidence_1 = pyip.inputChoice(['emf', 'orb', 'book', 'temp', 'box', 'prints'])
 
 
@@ -128,7 +127,6 @@ print("With one evidence your ghost can be: {}" .format(str(Ghost_Id_First_Evide
 print("____________________________________________________________________________________________________________________________________________________________")
 
 # ===EVIDENCE 2===
-print('Select second evidence: ')
 evidence_2 = pyip.inputChoice(list(Possible_Evidences_1))
 
 #CHECK FOR INCORRECT INPUT OR SAME INPUT AS evidence_1
@@ -224,7 +222,6 @@ print("With two evidences your ghost can be: {}" .format(str(Ghost_Id_Second_Evi
 print("____________________________________________________________________________________________________________________________________________________________")
 
 # ===EVIDENCE 3===
-print('Enter third evidence: ')
 evidence_3 = pyip.inputChoice(list(Possible_Evidences_2))
 
 #CHECK FOR INCORRECT INPUT OR SAME INPUT AS evidence_1 or evidence_2
