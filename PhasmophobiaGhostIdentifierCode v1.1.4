@@ -1,12 +1,13 @@
-#Objetivo: usar user input para identelificar o tipo de fantasma no phasmophobia de acordo com as 3 evidencias de cada tipo de fantasma.
-#Tabela de referencia: https://i.imgur.com/HYd7aOG.jpg
-#PROJETO CONCLUIDO COM SUCESSO DIA 5 DE NOVEMBRO 2020 - versao 1.0
+# Objetivo: usar user input para identelificar o tipo de fantasma no phasmophobia de acordo com as 3 evidencias de cada tipo de fantasma.
+# Tabela de referencia: https://i.imgur.com/HYd7aOG.jpg
+# PROJETO CONCLUIDO COM SUCESSO DIA 5 DE NOVEMBRO 2020 - versao 1.0
 
-#Update versao 1.1.0 dia 8 de novembro 2020: adicionadas possiveis evidencias para cada possibilidade de fantasma e adicionadas descricoes de cada fantasma apos 3 evidencias
-#Update versao 1.1.1 dia 12 de novembro 2020: adicionada condicao para input incorreto (que nao corresponde a nenhuma evidencia). o programa entao ira dizer que o input esta incorreto e pede para digitar uma das evidencias descritas.
-#Update versao 1.1.2 dia 13 de novembro 2020: corrigido erro ao digitar evidencia repetida dava o nome de fantasmas repetidos. exemplo: orb+book+book
-#Update versao 1.1.3 dia 15 de novembro 2020: corrigido erro ao digitar evidencias que nao sao possiveis eram lidas pelo programa como correto. exemplo: box, orb, book (neste caso 'book' nao eh uma possivel evidencia junto com box e orb)
-#Update versao 1.1.4 dia 8 de dezembro 2020: agora o input eh feito com pyinputplus ao inves do input regular
+# Update versao 1.1.0 dia 8 de novembro 2020: adicionadas possiveis evidencias para cada possibilidade de fantasma e adicionadas descricoes de cada fantasma apos 3 evidencias
+# Update versao 1.1.1 dia 12 de novembro 2020: adicionada condicao para input incorreto (que nao corresponde a nenhuma evidencia). o programa entao ira dizer que o input esta incorreto e pede para digitar uma das evidencias descritas.
+# Update versao 1.1.2 dia 13 de novembro 2020: corrigido erro ao digitar evidencia repetida dava o nome de fantasmas repetidos. exemplo: orb+book+book
+# Update versao 1.1.3 dia 15 de novembro 2020: corrigido erro ao digitar evidencias que nao sao possiveis eram lidas pelo programa como correto. exemplo: box, orb, book (neste caso 'book' nao eh uma possivel evidencia junto com box e orb)
+# Update versao 1.1.4 dia 8 de dezembro 2020: agora o input eh feito com pyinputplus ao inves do input regular
+# Update versao 1.1.5 dia 23 de janeiro 2021: usando inputMenu ao inves de inputChoice por razao estetica
 
 #proximos updates: criar GUI
 
@@ -31,17 +32,11 @@ Possible_Evidences_1 = []
 Possible_Evidences_2 = []
 Possible_Evidences_3 = []
 
-# ===WELCOME=== 
+# Welcome
 print("Welcome!")
 
-# ===EVIDENCE 1===
-evidence_1 = pyip.inputChoice(['emf', 'orb', 'book', 'temp', 'box', 'prints'])
-
-
-while evidence_1 != "emf" and evidence_1 != "orb" and evidence_1 != "book" and evidence_1 != "temp" and evidence_1 != "box" and evidence_1 != "prints":
-    evidence_1 = (input("Incorrect. Type one of the following evidences: emf, orb, book, temp, box or prints: "))
-    if evidence_1 == "emf" and evidence_1 == "orb" and evidence_1 == "book" and evidence_1 == "temp" and evidence_1 == "box" and evidence_1 == "prints":
-        break
+# Evidence 1
+evidence_1 = pyip.inputMenu(['emf', 'orb', 'book', 'temp', 'box', 'prints'])
 
 if evidence_1 in Shade:
     Ghost_Id_First_Evidence.append("Shade")
@@ -123,20 +118,11 @@ if evidence_1 == "box":
 if evidence_1 == "prints":
     Possible_Evidences_1.remove("prints")
 
-print("With one evidence your ghost can be: {}" .format(str(Ghost_Id_First_Evidence)))
 print("____________________________________________________________________________________________________________________________________________________________")
+print("With one evidence your ghost can be: {}" .format(str(Ghost_Id_First_Evidence)))
 
-# ===EVIDENCE 2===
-evidence_2 = pyip.inputChoice(list(Possible_Evidences_1))
-
-#CHECK FOR INCORRECT INPUT OR SAME INPUT AS evidence_1
-while evidence_2 != "emf" and evidence_2 != "orb" and evidence_2 != "book" and evidence_2 != "temp" and evidence_2 != "box" and evidence_2 != "prints" or evidence_2 == evidence_1:
-    evidence_2 = (input("Incorrect. Type one of the following evidences: emf, orb, book, temp, box or prints: "))
-    if evidence_2 == evidence_1:
-        print("Error: this evidence is already selected. Choose another one.")
-    elif evidence_2 == "emf" and evidence_2 == "orb" and evidence_2 == "book" and evidence_2 == "temp" and evidence_2 == "box" and evidence_2 == "prints" and evidence_2 != evidence_1:
-        print("____________________________________________________________________________________________________________________________________________________________")
-        break
+# Evidence 2
+evidence_2 = pyip.inputMenu(list(Possible_Evidences_1))
 
 if evidence_1 in Shade and evidence_2 in Shade and "Shade" not in Ghost_Id_Second_Evidence:
     Ghost_Id_Second_Evidence.append("Shade")
@@ -218,20 +204,11 @@ if evidence_1 == "box" or evidence_2 == "box":
 if evidence_1 == "prints" or evidence_2 == "prints":
     Possible_Evidences_2.remove("prints")
 
-print("With two evidences your ghost can be: {}" .format(str(Ghost_Id_Second_Evidence)))
 print("____________________________________________________________________________________________________________________________________________________________")
+print("With two evidences your ghost can be: {}" .format(str(Ghost_Id_Second_Evidence)))
 
-# ===EVIDENCE 3===
-evidence_3 = pyip.inputChoice(list(Possible_Evidences_2))
-
-#CHECK FOR INCORRECT INPUT OR SAME INPUT AS evidence_1 or evidence_2
-while evidence_3 != "emf" and evidence_3 != "orb" and evidence_3 != "book" and evidence_3 != "temp" and evidence_3 != "box" and evidence_3 != "prints" or evidence_3 == evidence_1 or evidence_3 == evidence_2 or evidence_3 not in Possible_Evidences_2:
-    evidence_3 = (input("Incorrect. Type one of the following evidences: {} " .format(str(Possible_Evidences_2))))
-    if evidence_3 == evidence_1 or evidence_3 == evidence_2:
-        print("Error: this evidence is already selected. Choose another one.")
-    elif evidence_3 == "emf" and evidence_3 == "orb" and evidence_3 == "book" and evidence_3 == "temp" and evidence_3 == "box" and evidence_3 == "prints" and evidence_3 != evidence_1 and evidence_3 != evidence_2 and evidence_3 in Possible_Evidences_2:
-        print("____________________________________________________________________________________________________________________________________________________________")
-        break
+# Evidence 3
+evidence_3 = pyip.inputMenu(list(Possible_Evidences_2))
 
 if evidence_1 in Shade and evidence_2 in Shade and evidence_3 in Shade and "Shade" not in Ghost_Id_Third_Evidence:
     Ghost_Id_Third_Evidence.append("Shade")
@@ -271,6 +248,7 @@ if evidence_1 in Wraith and evidence_2 in Wraith and evidence_3 in Wraith and "W
 
 print("____________________________________________________________________________________________________________________________________________________________")\
 
+# Prints which ghost it is and a description of it
 for i in Ghost_Id_Third_Evidence:
     print("With three evidences your ghost is: {}".format(i))
 
