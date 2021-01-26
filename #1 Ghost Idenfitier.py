@@ -38,15 +38,16 @@ Possible_Evidences_3 = []
 sg.theme('DarkBlack')
 layout = [
     [sg.Text('Select first evidence:', justification='left', size=(100,1), text_color='red')],
-    [sg.Input(key='input1', size=(10,1)), sg.Button('ok1')],
+    [sg.Input(key='input1', size=(10,1)), sg.Button('OK', key='ok1')],
     [sg.Text('Select second evidence:', justification='left', size=(100,1), text_color='red')],
-    [sg.Input(key='input2', size=(10,1)), sg.Button('ok2')],
+    [sg.Input(key='input2', size=(10,1)), sg.Button('OK', key='ok2')],
     [sg.Text('Select third evidence:', justification='left', size=(100,1), text_color='red')],
-    [sg.Input(key='input3', size=(10,1)), sg.Button('ok3')],
+    [sg.Input(key='input3', size=(10,1)), sg.Button('OK', key='ok3')],
     [sg.Text('Possible ghosts:', justification='left', size=(50,1), text_color='red')],
     [sg.Text('The possible ghosts appear here.', key='outputGhosts', size=(50,1))],
     [sg.Text('Possible evidences:', key='possibleEvidences', justification='left', size=(50,1), text_color='red')],
-    [sg.Text('The possible evidences appear here.', key='outputEvidences', size=(100,3))]
+    [sg.Text('The possible evidences appear here.', key='outputEvidences', size=(100,3))],
+    [sg.Button('Reset', key='-RESET-')]
 ]
 # Janela
 window = sg.Window('Ghost Identifier by fmagesty', layout)
@@ -56,11 +57,10 @@ while True:
     if event == sg.WIN_CLOSED:
         break
 
-
 # Evidence 1
     if event == 'ok1':
         evidence_1 = values['input1']
-
+        
         if evidence_1 in Shade:
             Ghost_Id_First_Evidence.append("Shade")
             for i in Shade:
@@ -141,15 +141,17 @@ while True:
         if evidence_1 == "prints":
             Possible_Evidences_1.remove("prints")
 
-
     # Output evidences and ghost
     window['outputGhosts'].update(Ghost_Id_First_Evidence)
     window['outputEvidences'].update(Possible_Evidences_1)
+    
+    # Transform possible evidences back to a list so it can be reset and entered again
+    Possible_Evidences_1 = list(Possible_Evidences_1)
 
 # Evidence 2
     if event == 'ok2':
         evidence_2 = values['input2']
-
+        
         if evidence_1 in Shade and evidence_2 in Shade and "Shade" not in Ghost_Id_Second_Evidence:
             Ghost_Id_Second_Evidence.append("Shade")
             for i in Shade:
@@ -234,6 +236,9 @@ while True:
         window['outputGhosts'].update(Ghost_Id_Second_Evidence)
         window['outputEvidences'].update(Possible_Evidences_2)
 
+        # Transform possible evidences back to a list so it can be reset and entered again
+        Possible_Evidences_2 = list(Possible_Evidences_2)
+
 # Evidence 3
     if event == 'ok3':
         evidence_3 = values['input3']
@@ -277,6 +282,9 @@ while True:
     # Output evidences and ghost
         window['outputGhosts'].update(Ghost_Id_Third_Evidence[0])
         window['possibleEvidences'].update('Ghost description:')
+        
+        # Transform possible evidences back to a list so it can be reset and entered again
+        Possible_Evidences_3 = list(Possible_Evidences_3)
 
 # Prints which ghost it is and a description of it
 
@@ -315,5 +323,19 @@ while True:
 
         if "Wraith" in Ghost_Id_Third_Evidence:
             window['outputEvidences'].update("A wraith is one of the most dangerous ghosts you will find. It is also the only known ghost that has the ability to flight and has sometimes been known to travel trough walls.\nUnique strenghts: wraiths almost never touch the ground, meaning it can't be tracked by footsteps.\nWeaknesses: wraiths have a toxic reaction to salt.")
+
+    if event == '-RESET-':
+        window['input1'].update('')
+        window['input2'].update('')
+        window['input3'].update('')
+        window['outputGhosts'].update('The possible ghosts appear here.')
+        window['outputEvidences'].update('The possible evidences appear here.')
+        window['possibleEvidences'].update('Possible evidences:')
+        Ghost_Id_First_Evidence = []
+        Ghost_Id_Second_Evidence = []
+        Ghost_Id_Third_Evidence = []
+        Possible_Evidences_1 = []
+        Possible_Evidences_2 = []
+        Possible_Evidences_3 = []
 
 window.close()
