@@ -17,5 +17,7 @@ The user must input the evidences for it to work. Type:
 
 After typing an evidence just click 'OK' and the program with output the possible ghosts and evidences for you. 
 After 3 evidences it will show which ghost it is and a description of it. 
+Click the "Reset" button to reset all fields if you need to.
+
 
 That's all, have fun!
