@@ -21,5 +21,7 @@ After 3 evidences it will show which ghost it is and a description of it.
 
 Click the "Reset" button to reset all fields if you need to.
 
+![Example image](https://raw.githubusercontent.com/fmagesty/phasmophobia-ghost-identifier/main/ghost-identifier-example.png)
+
 
 That's all, have fun!
